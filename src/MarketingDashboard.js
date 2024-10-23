@@ -301,30 +301,31 @@ const MarketingDashboard = () => {
     </div>
   );
 
-const renderWishlistChart = () => (
-  <div className="bg-white rounded-lg shadow p-6">
-    <h3 className="text-lg font-semibold text-gray-600 mb-4">Wishlist Activity</h3>
-    <div style={{ width: '100%', height: 400 }}>
-      <ResponsiveContainer>
-        <LineChart data={data} margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="Date" />
-          <YAxis domain={getYAxisDomain([
-            'Wishlist Addition', 'Wishlist Deletions',
-            'Purchase&Activations', 'Gifts', 'Total Wishlist Balance'
-          ], false)} /> {/* Set allowNegative to false */}
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          <Line type="monotone" dataKey="Wishlist Addition" stroke={CHART_COLORS.success} name="Additions" dot={false} />
-          <Line type="monotone" dataKey="Wishlist Deletions" stroke={CHART_COLORS.danger} name="Deletions" dot={false} />
-          <Line type="monotone" dataKey="Purchase&Activations" stroke={CHART_COLORS.primary} name="Purchases" dot={false} />
-          <Line type="monotone" dataKey="Gifts" stroke={CHART_COLORS.warning} name="Gifts" dot={false} />
-          <Line type="monotone" dataKey="Total Wishlist Balance" stroke={CHART_COLORS.purple} name="Balance" dot={false} />
-        </LineChart>
-      </ResponsiveContainer>
+  const renderWishlistChart = () => (
+    <div className="bg-white rounded-lg shadow p-6">
+      <h3 className="text-lg font-semibold text-gray-600 mb-4">Wishlist Activity</h3>
+      <div style={{ width: '100%', height: 400 }}>
+        <ResponsiveContainer>
+          <LineChart data={data} margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="Date" />
+            <YAxis 
+              allowDecimals={false}
+              domain={[0, 'dataMax + 10']}
+              tickCount={10}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend />
+            <Line type="monotone" dataKey="Wishlist Addition" stroke={CHART_COLORS.success} name="Additions" dot={false} />
+            <Line type="monotone" dataKey="Wishlist Deletions" stroke={CHART_COLORS.danger} name="Deletions" dot={false} />
+            <Line type="monotone" dataKey="Purchase&Activations" stroke={CHART_COLORS.primary} name="Purchases" dot={false} />
+            <Line type="monotone" dataKey="Gifts" stroke={CHART_COLORS.warning} name="Gifts" dot={false} />
+            <Line type="monotone" dataKey="Total Wishlist Balance" stroke={CHART_COLORS.purple} name="Balance" dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
-  </div>
-);
+  );
 
   const renderCombinedChart = () => (
   <div className="bg-white rounded-lg shadow p-6">
