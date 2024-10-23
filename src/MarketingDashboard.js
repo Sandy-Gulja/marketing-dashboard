@@ -2,7 +2,7 @@
  * PART 1: Core Setup and Constants
  ******************************************/
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import * as XLSX from 'xlsx';
 
@@ -22,43 +22,6 @@ const REGIONS = [
   { value: 'EN', label: 'English' },
   { value: 'CNTW', label: 'China/Taiwan' },
   { value: 'JP', label: 'Japan' },
-];
-
-// Required columns from Excel file
-const REQUIRED_COLUMNS = [
-  'Date',
-  'Game Issue',
-  'Steam Issue',
-  'UA Issue',
-  'Steam Total Traffic',
-  'Steam Search',
-  'Steam 3rd Party',
-  'Steam Discount Page',
-  'Steam Bot',
-  'Steam Other page',
-  'Wishlist Addition',
-  'Wishlist Deletions',
-  'Purchase&Activations',
-  'Gifts',
-  'Total Wishlist Balance',
-  'GA KR Cost',
-  'GA KR Impression',
-  'GA KR Click',
-  'GA EN Cost',
-  'GA EN Impression',
-  'GA EN Click',
-  'GA CNTW Cost',
-  'GA CNTW Impression',
-  'GA CNTW Click',
-  'GA JP Cost',
-  'GA JP Impression',
-  'GA JP Click',
-  'X KR Cost',
-  'X KR Impression',
-  'X KR Click',
-  'X EN Cost',
-  'X EN Impression',
-  'X EN Click'
 ];
 
 /******************************************
