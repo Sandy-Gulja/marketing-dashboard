@@ -289,17 +289,18 @@ const MarketingDashboard = () => {
             ])} />
             <Tooltip content={<CustomTooltip />} />
             <Legend />
-            <Line type="monotone" dataKey="Steam Total Traffic" stroke={CHART_COLORS.primary} name="Total Traffic" dot={false} />
-            <Line type="monotone" dataKey="Steam Search" stroke={CHART_COLORS.success} name="Search" dot={false} />
-            <Line type="monotone" dataKey="Steam 3rd Party" stroke={CHART_COLORS.warning} name="3rd Party" dot={false} />
-            <Line type="monotone" dataKey="Steam Discount Page" stroke={CHART_COLORS.danger} name="Discount" dot={false} />
-            <Line type="monotone" dataKey="Steam Bot" stroke={CHART_COLORS.purple} name="Bot" dot={false} />
-            <Line type="monotone" dataKey="Steam Other page" stroke={CHART_COLORS.pink} name="Other" dot={false} />
+            <Line type="monotone" dataKey="Steam Total Traffic" stroke={CHART_COLORS.primary} name="Total Traffic" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Steam Search" stroke={CHART_COLORS.success} name="Search" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Steam 3rd Party" stroke={CHART_COLORS.warning} name="3rd Party" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Steam Discount Page" stroke={CHART_COLORS.danger} name="Discount" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Steam Bot" stroke={CHART_COLORS.purple} name="Bot" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Steam Other page" stroke={CHART_COLORS.pink} name="Other" dot={false} strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>
       </div>
     </div>
   );
+
 
   const renderWishlistChart = () => (
     <div className="bg-white rounded-lg shadow p-6">
@@ -309,47 +310,21 @@ const MarketingDashboard = () => {
           <LineChart data={data} margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="Date" />
-            <YAxis 
-              allowDecimals={false}
-              domain={[0, 'dataMax + 10']}
-              tickCount={10}
-            />
+            <YAxis allowDecimals={false}
+              allowNegative={false}
+              domain={[0, 'auto']} />
             <Tooltip content={<CustomTooltip />} />
             <Legend />
-            <Line type="monotone" dataKey="Wishlist Addition" stroke={CHART_COLORS.success} name="Additions" dot={false} />
-            <Line type="monotone" dataKey="Wishlist Deletions" stroke={CHART_COLORS.danger} name="Deletions" dot={false} />
-            <Line type="monotone" dataKey="Purchase&Activations" stroke={CHART_COLORS.primary} name="Purchases" dot={false} />
-            <Line type="monotone" dataKey="Gifts" stroke={CHART_COLORS.warning} name="Gifts" dot={false} />
-            <Line type="monotone" dataKey="Total Wishlist Balance" stroke={CHART_COLORS.purple} name="Balance" dot={false} />
+            <Line type="monotone" dataKey="Wishlist Addition" stroke={CHART_COLORS.success} name="Additions" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Wishlist Deletions" stroke={CHART_COLORS.danger} name="Deletions" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Purchase&Activations" stroke={CHART_COLORS.primary} name="Purchases" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Gifts" stroke={CHART_COLORS.warning} name="Gifts" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="Total Wishlist Balance" stroke={CHART_COLORS.purple} name="Balance" dot={false} strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>
       </div>
     </div>
   );
-
-  const renderCombinedChart = () => (
-  <div className="bg-white rounded-lg shadow p-6">
-    <h3 className="text-lg font-semibold text-gray-600 mb-4">UA-Steam-Wishlist Comparison</h3>
-    <div style={{ width: '100%', height: 400 }}>
-      <ResponsiveContainer>
-        <LineChart data={data} margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="Date" />
-          <YAxis domain={getYAxisDomain([
-            'Steam Total Traffic', `GA ${selectedRegion} Click`,
-            `X ${selectedRegion} Click`, 'Total Wishlist Balance'
-          ], false)} /> {/* Set allowNegative to false */}
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          <Line type="monotone" dataKey={`GA ${selectedRegion} Click`} stroke={CHART_COLORS.primary} name="GA Clicks" dot={false} />
-          <Line type="monotone" dataKey={`X ${selectedRegion} Click`} stroke={CHART_COLORS.success} name="X Clicks" dot={false} />
-          <Line type="monotone" dataKey="Steam Total Traffic" stroke={CHART_COLORS.warning} name="Total Traffic" dot={false} />
-          <Line type="monotone" dataKey="Total Wishlist Balance" stroke={CHART_COLORS.danger} name="Wishlist Balance" dot={false} />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  </div>
-);
 
   /******************************************
  * PART 4: Main Render Method and Export
